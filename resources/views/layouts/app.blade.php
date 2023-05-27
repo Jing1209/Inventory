@@ -19,12 +19,15 @@
 
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 
+    <script src="http://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('/js/app.js') }}" defer></script>
     <script src="{{ asset('/js/bootstrap.js') }}" defer></script>
     <script src="{{ asset('/js/bootstrap.min.js') }}" defer></script>
@@ -80,7 +83,7 @@
                 </ul>
             </li>
             {{-- add new --}}
-            <li class="{{ request()->is('depaments') ? 'active' : '' }}">
+            <!-- <li class="{{ request()->is('depaments') ? 'active' : '' }}">
                 <a href="/buildings">
                     <i class='bx bx-collection'></i>
                     <span class="link_name">Departments</span>
@@ -88,7 +91,7 @@
                 <ul class="sub-menu blank">
                     <li><a class="link_name" href="/buildings">Departments</a></li>
                 </ul>
-            </li>
+            </li> -->
             {{--  --}}
             <li class="{{ request()->is('buildings') ? 'active' : '' }}">
                 <a href="/buildings">
@@ -219,6 +222,7 @@
         sidebarBtn.addEventListener("click", () => {
             sidebar.classList.toggle("close");
         });
+        let table = new DataTable('#myTable');
     </script>
 </body>
 

@@ -53,7 +53,7 @@
                 <p>{{ $message }}</p>
             </div>
         @endif
-        <table class="table table-striped table-hover">
+        <table class="table table-striped table-hover" id="myTable">
             <thead>
                 <tr class="table-primary">
                     <th scope="col" style="padding-left: 20px;">S.No</th>

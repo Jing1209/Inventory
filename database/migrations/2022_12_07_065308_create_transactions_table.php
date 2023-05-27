@@ -22,7 +22,9 @@ return new class extends Migration
             $table->foreignId('building_id')->references('id')->on('buildings');
             // $table->string('user_id');
             $table->foreignId('employee_id')->references('id')->on('employees');
-            $table->foreignId('status')->references('id')->on('statuses');
+            $table->foreignId('condition')->references('id')->on('statuses');
+            $table->string('status');
+            $table->date('returned_date');
             $table->timestamps();
         });
     }

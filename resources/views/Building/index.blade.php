@@ -38,7 +38,7 @@
 
 {{-- {{Table}} --}}
 <div class="mt-1 rounded bg-white">
-    <table class="table table-striped table-hover">
+    <table class="table table-striped table-hover" id="myTable">
         <thead class="border-bottom">
             <tr class="table-primary">
                 <th class="col">S.No</th>
@@ -47,9 +47,9 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($buildings as $building)
+            @foreach ($buildings as $keys => $building)
             <tr>
-                <td scope="col" style="padding-left: 20px;">{{ $building->id }}</td>
+                <td scope="col" style="padding-left: 20px;">{{ $keys+1 }}</td>
                 <td>{{ $building->building }}</td>
                 <td>
                     <form action="{{ route('buildings.destroy',$building->id) }}" method="Post">

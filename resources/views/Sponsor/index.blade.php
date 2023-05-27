@@ -40,7 +40,7 @@
 {{-- Sponsor Table  --}}
 
 <div class="mt-1 rounded bg-white">
-    <table class="table table-striped table-hover">
+    <table class="table table-striped table-hover" id="myTable">
         <thead>
             <tr class="table-primary">
                 <th scope="col" style="padding-left: 20px;">S.No</th>

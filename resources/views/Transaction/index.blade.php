@@ -74,7 +74,7 @@
                 </form>
             </div>
 
-            <table class="table table-striped table-hover">
+            <table class="table table-striped table-hover" id="myTable">
                 <thead class="border-bottom">
                     <tr class="table-primary">
                         <th style="padding-left: 20px;">S.No</th>
@@ -109,14 +109,14 @@
                                 @if ($transaction->status == 'Returned')
                                     <form action="{{ route('transactions.destroy', $transaction->id) }}" method="Post">
                                         <a class="btn btn-warning text-white" href="#viewTransaction{{ $transaction->id }}"
-                                            data-bs-toggle="modal"><i class="bx bx-eye"></i></a>
+                                            data-bs-toggle="modal"><i class="bx bx-show"></i></a>
                                         <a class="btn btn-primary" href="#editTransaction{{ $transaction->id }}"
                                             data-bs-toggle="modal"><div class="bx bx-pencil"></div></a>
                                         @csrf
                                         @method('DELETE')
                                         <a href="#deleteClarify{{ $transaction->id }}" data-bs-toggle="modal"
                                             class="btn btn-danger">
-                                            Delete
+                                            <i class="bx bx-trash"></i>
                                         </a>
                                         {{-- Comfirm Delete Room  --}}
                                         <div class="modal fade" id="deleteClarify{{ $transaction->id }}" tabindex="-1"
@@ -539,3 +539,24 @@
         </div>
     </div>
 @endsection
+
+<script>
+    $(document).ready(function () {
+    $('#dataTable').DataTable({
+        columnDefs: [
+            {
+                targets: [0],
+                orderData: [0, 1],
+            },
+            {
+                targets: [1],
+                orderData: [1, 0],
+            },
+            {
+                targets: [4],
+                orderData: [4, 0],
+            },
+        ],
+    });
+});
+</script>
