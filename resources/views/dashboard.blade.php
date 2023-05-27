@@ -4,7 +4,7 @@
 
     <div class="container">
         <div class="my-2 w-100 d-flex justify-content-between">
-            <div class="w-50 bg-success text-white rounded-2 me-2">
+            <div class="w-50 text-white rounded-2 me-2" style="background-color: #20c997;">
                 <i class='bx bx-list-check p-2 m-3 rounded-2'
                     style="background-color: rgba(255, 255, 255, 0.16); font-size: 18px;"></i>
                 <div class="mx-3 my-1">
@@ -14,8 +14,8 @@
                     </div>
                 </div>
             </div>
-            <div class="w-50 rounded-2 me-2" style="background-color: yellow;">
-                <i class='bx bx-color-fill p-2 ms-3 m-3 rounded-2' style="background-color: white; font-size: 18px;"></i>
+            <div class="w-50 text-white rounded-2 me-2" style="background-color: #0dcaf0;">
+                <i class='bx bx-color-fill p-2 ms-3 m-3 rounded-2' style="background-color: #c3eff7; font-size: 18px;"></i>
                 <div class="mx-3 mt-1 ">
                     Medium
                     <div>
