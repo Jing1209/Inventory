@@ -82,17 +82,6 @@
                     <li><a class="link_name" href="/transactions">Transactions</a></li>
                 </ul>
             </li>
-            {{-- add new --}}
-            <!-- <li class="{{ request()->is('depaments') ? 'active' : '' }}">
-                <a href="/buildings">
-                    <i class='bx bx-collection'></i>
-                    <span class="link_name">Departments</span>
-                </a>
-                <ul class="sub-menu blank">
-                    <li><a class="link_name" href="/buildings">Departments</a></li>
-                </ul>
-            </li> -->
-            {{--  --}}
             <li class="{{ request()->is('buildings') ? 'active' : '' }}">
                 <a href="/buildings">
                     <i class='bx bx-building'></i>
@@ -138,7 +127,7 @@
                     <li><a class="link_name" href="/status">Status</a></li>
                 </ul>
             </li>
-            <li class="{{ request()->routeIs('setting.*') ? 'active' : '' }}">
+            <!-- <li class="{{ request()->routeIs('setting.*') ? 'active' : '' }}">
                 <a href="/setting">
                     <i class='bx bx-cog'></i>
                     <span class="link_name">Setting</span>
@@ -148,7 +137,15 @@
                     <li><a class="link_name" href="/buildings"><i class='bx bx-building'></i> Buildings</a></li>
                     <li><a class="link_name" href="/employees"><i class="bx bx-user-plus"></i> Employees</a></li>
                     <li><a class="link_name" href="/status"><i class='bx bxs-star-half'></i> Status</a></li>
-
+                </ul>
+            </li> -->
+            <li class="{{ request()->routeIs('setting.*') ? 'active' : '' }}">
+                <a href="/setting">
+                    <i class='bx bx-user-circle'></i>
+                    <span class="link_name">Profile Setting</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="/setting">Profile Setting</a></li>
                 </ul>
             </li>
             <li style="position: absolute; bottom:0% ; margin-bottom: 10px; width: calc(100% - 1px);">
@@ -162,7 +159,7 @@
                     <ul class="sub-menu blank">
                         <li><a class="link_name" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
-                                                      document.getElementById('frm-logout').submit();">Logout</a>
+                                document.getElementById('frm-logout').submit();">Logout</a>
                         </li>
                         <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
                             {{ csrf_field() }}

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-Setting
+Profile Setting
 @endsection
 
 @section('content')
@@ -10,7 +10,7 @@ Setting
         {{ __('Create New Admin') }}
     </button>
 </div> -->
-<div class="m-3 container">
+<div class="">
     <div class="row justify-content-center">
         <div class="card">
             <div class="card-header"><b>Current Admin</b></div>
@@ -19,21 +19,21 @@ Setting
                     @csrf
                     <div class="row mb-3">
                         <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-control">{{$user->name}}</div>
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-control">{{$user->email}}</div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="d-flex flex-row-reverse mb-2" style="margin-right: 20%;">
-                <a href="{{ route('setting.create') }}" class="btn btn-primary">
+            <div class="d-flex flex-row-reverse mb-3" style="margin-right: 42%;">
+                <a href="{{ route('setting.create') }}" class="btn btn-outline-info">
                     {{ __('Update Password') }}
                 </a>
             </div>

@@ -44,9 +44,9 @@ Update password
 
           </div>
 
-          <div class="card-footer">
-            <a href="/setting" class="btn btn-danger">Back</a>
-            <button class="btn btn-success">Submit</button>
+          <div class="card-body" style="margin-left : 77%">
+            <a href="/setting" class="btn btn-secondary">Back</a>
+            <button class="btn btn-success" >Submit</button>
           </div>
 
         </form>

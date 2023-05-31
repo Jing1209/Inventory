@@ -10,7 +10,7 @@
         <div class="mx-3 my-3">
             All Category
             <div>
-                234
+                
             </div>
         </div>
     </div>

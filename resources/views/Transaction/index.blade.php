@@ -52,7 +52,7 @@
                     <p>{{ $message }}</p>
                 </div>
             @endif
-            <div class="my-3 py-2">
+            <!-- <div class="my-3 py-2">
                 <form action="/search" method="POST" role="search">
                     {{ csrf_field() }}
                     <div class="mx-4">
@@ -72,7 +72,7 @@
                         </div>
                     </div>
                 </form>
-            </div>
+            </div> -->
 
             <table class="table table-striped table-hover" id="myTable">
                 <thead class="border-bottom">

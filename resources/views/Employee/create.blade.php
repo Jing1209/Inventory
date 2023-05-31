@@ -48,7 +48,7 @@ Employee
                 <div class="mb-2">
                     <div class="form-group">
                         <label for="phone-number">Phone number</label>
-                        <input type="number" name="phone_number" class="form-control" placeholder="087 xxxxxx32">
+                        <input type="number" name="phone_number" class="form-control">
                     </div>
                 </div>
                 <div class="my-3 d-flex flex-row-reverse">
