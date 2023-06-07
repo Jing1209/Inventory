@@ -45,9 +45,9 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($statuses as $status)
+            @foreach ($statuses as $keys => $status)
             <tr>
-                <td style="padding-left: 20px;">{{ $status->id }}</td>
+                <td style="padding-left: 20px;">{{ $keys+1 }}</td>
                 <td>{{ $status->status }}</td>
                 <td style="text-align: center;">
                     <a href="#editStatus{{$status->id}}" data-bs-toggle="modal" class="btn btn-primary">

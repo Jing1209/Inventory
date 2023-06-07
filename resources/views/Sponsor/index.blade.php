@@ -49,9 +49,9 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($sponsors as $sponsor)
+            @foreach ($sponsors as $keys => $sponsor)
             <tr>
-                <td style="padding-left: 20px;">{{ $sponsor->id }}</td>
+                <td style="padding-left: 20px;">{{ $keys+1 }}</td>
                 <td>{{ $sponsor->name}}</td>
                 <td style="text-align: center;">
                     <a href="#editSponsor{{$sponsor->id}}" data-bs-toggle="modal" class="btn btn-primary">Edit</a>

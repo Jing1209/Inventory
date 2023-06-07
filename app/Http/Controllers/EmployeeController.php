@@ -38,13 +38,13 @@ class EmployeeController extends Controller
         ->orderBy('employees.id', 'desc')->paginate(10);
 
         $employees_display = DB::table('employees')
-        ->select('employees.*', 'employeeimages.*')
+        ->select('employees.*','employeeimages.url')
         ->leftJoin('employeeimages', 'employeeimages.employee_id', 'employees.id', '=')
         ->orderBy('employees.id', 'desc')->paginate(10);
         
         $count = DB::table('employees')->count();
         // dd($employees_display);
-        return view('Employee.index')->with(compact('employees','count'));
+        return view('Employee.index')->with(compact('employees_display','count'));
     }
 
     /**
@@ -146,7 +146,6 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
-        //
         $deleteImage = DB::table('employeeimages')->where('employee_id', '=', $employee->id)->delete();
         $employee->delete();
         return redirect()->route('employees.index')->with('success', 'Employee Has Been removed successfully');

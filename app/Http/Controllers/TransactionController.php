@@ -105,8 +105,9 @@ class TransactionController extends Controller
         $transaction['item_id'] = $request->item_id;
         $transaction['room_id'] = $request->room_id;
         $transaction['employee_id'] = $request->employee_id;
-        $transaction['condition'] = $request->status;
+        $transaction['condition'] = $request->condition;
         $transaction['building_id'] = $request->building_id;
+        $transaction['returned_date'] = NULL;
         $transaction['status'] = 'Borrowed';
 
         $transaction->save();
@@ -150,11 +151,29 @@ class TransactionController extends Controller
      * @param  \App\Models\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Transaction $transaction)
+    public function update(Request $request, $id)
     {
         //
-        $transaction->fill($request->post())->save();
+        // $transaction->fill($request->post())->save();
+        //
+        // dd($request);
+        $transaction = Transaction::find($id);
+        // $request->validate([
+        //     'item_id' => 'required',
+        //     'room_id' => 'required',
+        //     'employee_id' => 'required',
+        //     'status' => 'required',
+        //     'building_id' => 'required'
 
+        // ]);
+        // Transaction::create($request->post());
+        $transaction['item_id'] = $request->item_id;
+        $transaction['room_id'] = $request->room_id;
+        $transaction['employee_id'] = $request->employee_id;
+        $transaction['condition'] = $request->condition;
+        $transaction['status'] = 'Borrowed';
+        $transaction['returned_date'] = NULL;
+        $transaction->save();
         return redirect()->route('transactions.index')->with('success', 'Transaction Has Been updated successfully');
     }
 

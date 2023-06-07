@@ -91,7 +91,7 @@ class SponsorController extends Controller
     public function update(Request $request, Sponsor $sponsor)
     {
         //
-        $request->validate(['name'=>'unique']);
+        $request->validate(['name'=>'unique:sponsors']);
         $sponsor->fill($request->post())->save();
         return redirect()->route('sponsor.index')->with('success', 'Sponsor Has Been updated successfully');
     }

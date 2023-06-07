@@ -65,9 +65,9 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($employees as $employee)
+                @foreach ($employees_display as $keys => $employee)
                     <tr>
-                        <td scope="row" style="padding-left: 20px;">{{ $employee->id }}</td>
+                        <td scope="row" style="padding-left: 20px;">{{ $keys+1 }}</td>
                         <td>{{ $employee->firstname }} {{ $employee->lastname }}</td>
                         <td>{{ $employee->gender }}</td>
                         <td>{{ $employee->email }}</td>
@@ -149,6 +149,6 @@
     </table>
 </div>
 <div class="d-flex justify-content-center">
-    {!! $employees->links() !!}
+    {!! $employees_display->links() !!}
 </div>
 @endsection

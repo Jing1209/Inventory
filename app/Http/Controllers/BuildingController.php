@@ -103,6 +103,7 @@ class BuildingController extends Controller
      */
     public function destroy(Building $building)
     {
+        $building->find($building);
         $building->delete();
         return redirect()->route('buildings.index')->with('success', 'Building Has Been removed successfully');
     }

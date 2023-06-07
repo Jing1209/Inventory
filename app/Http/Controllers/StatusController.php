@@ -84,7 +84,7 @@ class StatusController extends Controller
     public function update(Request $request, Status $status)
     {
         //
-        $request->validate(['status'=>'unique']);
+        $request->validate(['status'=>'unique:statuses']);
         $status->fill($request->post()) -> save();
         return redirect()->route('status.index')->with('success','Status Has Been updated successfully');
 
