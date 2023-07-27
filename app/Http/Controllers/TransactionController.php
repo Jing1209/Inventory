@@ -39,14 +39,14 @@ class TransactionController extends Controller
         $employees = Employee::orderBy('id', 'desc')->get();
 
         $transactions = DB::table('transactions')
-            ->select('transactions.*', 'items.title as ItemName','items.id as ItemId', 'buildings.building as BuildingName','buildings.id as BuildingId', 'rooms.name as RoomName','rooms.id as RoomId', 'employees.lastname as EmployeeLastname', 'employees.firstname as EmployeeFirstname','employees.id as EmployeeId', 'statuses.status as ConditionName','statuses.id as ConditionId')
+            ->select('transactions.*','itemimages.url as image' ,'items.title as ItemName','items.id as ItemId', 'buildings.building as BuildingName','buildings.id as BuildingId', 'rooms.name as RoomName','rooms.id as RoomId', 'employees.lastname as EmployeeLastname', 'employees.firstname as EmployeeFirstname','employees.id as EmployeeId', 'statuses.status as ConditionName','statuses.id as ConditionId')
             ->leftJoin('items', 'items.id', 'transactions.item_id')
+            ->leftJoin('itemimages', 'itemimages.item_id', 'transactions.item_id')
             ->leftJoin('rooms', 'rooms.id', 'transactions.room_id')
             ->leftJoin('buildings', 'buildings.id', 'transactions.building_id')
             ->leftJoin('employees', 'employees.id', 'transactions.employee_id')
             ->leftJoin('statuses', 'statuses.id', 'transactions.condition')
             ->paginate(10);
-
         // $transactions = DB::table('transactions')
         //             ->join('items','transactions.item_id','=','items.id')
         //             ->join('employees','transactions.employee_id','=','employees.id')
@@ -56,14 +56,15 @@ class TransactionController extends Controller
         //                 ,DB::raw("(select * from buildings where buildings.id = rooms.building_id GROUP BY buildings.id)")
         //             )
         //             ->paginate(10);
-        //             dd($transactions);
+                    // dd($transactions);
         $statuses = Status::orderBy('id', 'desc')->paginate(0);
         $countBorrow = DB::table('transactions')
             ->where('transactions.status', 'Borrowed')->count();
         $countReturn = DB::table('transactions')
             ->where('transactions.status', 'Returned')->count();
         // dd($transactions);
-        return view('Transaction.index')->with(compact('transactions'))->with(compact('rooms'))->with(compact('items'))->with(compact('employees'))->with(compact('statuses'))->with(compact('countBorrow'))->with(compact('countReturn'))->with(compact('buildings'));
+        $transaction = Transaction::all();
+        return view('Transaction.index')->with(compact('transactions'))->with(compact('rooms'))->with(compact('items'))->with(compact('employees'))->with(compact('statuses'))->with(compact('countBorrow'))->with(compact('countReturn'))->with(compact('buildings'))->with(compact('transaction'));
     }
 
     /**
@@ -92,24 +93,31 @@ class TransactionController extends Controller
     {
         //
         // dd($request);
-        $request->validate([
-            'item_id' => 'required',
-            'room_id' => 'required',
-            'employee_id' => 'required',
-            'status' => 'required',
-            'building_id' => 'required'
-
-        ]);
-        // Transaction::create($request->post());
+        // $request->validate([
+        //     'item_id' => 'required',
+        //     'room_id' => 'required',
+        //     'employee_id' => 'required',
+        //     'status' => 'required',
+        //     'building_id' => 'required'
+        // ]);
+        // $transactions = new Transaction();
+        // $transactions->item_id = $request->item_id;
+        // $transactions->room_id = $request->room_id;
+        // $transactions->building_id = $request->building_id;
+        // $transactions->employee_id = $request->employee_id;
+        // $transactions->condition = $request->condition;
+        // $transactions->returned_date = NULL;
+        // $transactions->status = 'Borrowed';
+        // Transaction::create($request->transactions());
         $transaction = new Transaction();
         $transaction['item_id'] = $request->item_id;
         $transaction['room_id'] = $request->room_id;
         $transaction['employee_id'] = $request->employee_id;
-        $transaction['condition'] = $request->condition;
+        $transaction['condition'] = 1;
         $transaction['building_id'] = $request->building_id;
         $transaction['returned_date'] = NULL;
         $transaction['status'] = 'Borrowed';
-
+        // dd($transaction);
         $transaction->save();
 
         return redirect()->route('transactions.index');
@@ -170,7 +178,7 @@ class TransactionController extends Controller
         $transaction['item_id'] = $request->item_id;
         $transaction['room_id'] = $request->room_id;
         $transaction['employee_id'] = $request->employee_id;
-        $transaction['condition'] = $request->condition;
+        $transaction['condition'] = 2;
         $transaction['status'] = 'Borrowed';
         $transaction['returned_date'] = NULL;
         $transaction->save();

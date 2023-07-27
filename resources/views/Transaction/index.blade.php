@@ -74,6 +74,8 @@
             <thead class="border-bottom">
                 <tr class="table-primary">
                     <th style="padding-left: 20px;">S.No</th>
+                    <th>Image</th>
+                    <th>Item ID</th>
                     <th>Item</th>
                     <th>Room</th>
                     <th>Condition</th>
@@ -88,6 +90,8 @@
                 @foreach ($transactions as $keys => $transaction)
                 <tr>
                     <td style="padding-left: 20px;">{{ $keys + 1 }}</td>
+                    <td><img src="{{ url('public/Image/'.$transaction->image)}}" alt="" width="30" height="30"></td>
+                    <td>{{ $transaction->ItemId }}</td>
                     <td>{{ $transaction->ItemName }}</td>
                     <td>{{ $transaction->BuildingName }}-{{ $transaction->RoomName }}</td>
                     <td>{{ $transaction->ConditionName }}</td>
@@ -438,15 +442,30 @@
                 <form action="{{ route('transactions.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
-                        <div class="mb-1 d-flex flex-column">
+                        <!-- <div class="mb-1 d-flex flex-column">
                             <label class="col-form-label d-flex">Item:</label>
                             <select name="item_id" class="p-2 rounded-2">
                                 @foreach ($items as $cate)
                                 <option value={{ $cate->id }}>{{ $cate->title }}</option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> -->
+                        <div class="">
 
+                            <div class="mb-1 d-flex flex-column">
+                                <label class="col-form-label d-flex">Item ID:</label>
+                                <select name="item_id" class="p-2 rounded-2 item_id">
+                                    @foreach ($items as $cate)
+                                    <option class="item_id" value="{{ $cate->id }}">{{ $cate->id }} - {{$cate->title}}</option>
+                                    <div class="data" value="{{$cate->title}}" hidden>{{$cate->title}}</div>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="mb-1 d-flex flex-column">
+                                <label class="col-form-label d-flex">Item:</label>
+                                <input type="text" readonly name="item" class="data_item" id="data_item" style="background-color: rgb(192,192,192,0.5);">
+                            </div>
+                        </div>
                         <div class="mb-1 d-flex flex-column">
                             <label class="col-form-label d-flex">Room: </label>
                             <select name="room_id" class="p-2 rounded-2">
@@ -475,15 +494,6 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="mb-1 d-flex flex-column">
-                            <label class="col-form-label d-flex text-right">Status:</label>
-                            <select name="condition" class="p-2 rounded-2">
-                                @foreach ($statuses as $stat)
-                                <option value="{{ $stat->id }}">{{ $stat->status }}
-                                </option>
-                                @endforeach
-                            </select>
-                        </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bx bx-log-out-circle"></i> Cancel</button>
                             <button type="submit" class="btn btn-primary ml-3"><i class="bx bx-save"></i>
@@ -498,21 +508,30 @@
 @endsection
 
 <script>
+    // $(document).ready(function() {
+    //     $('#dataTable').DataTable({
+    //         columnDefs: [{
+    //                 targets: [0],
+    //                 orderData: [0, 1],
+    //             },
+    //             {
+    //                 targets: [1],
+    //                 orderData: [1, 0],
+    //             },
+    //             {
+    //                 targets: [4],
+    //                 orderData: [4, 0],
+    //             },
+    //         ],
+    //     });
+    // });
+    // $(document).ready(function() {
+    //     $('.item_id').on("click", function() {
+    //         var text = $(this).val();
+    //         $('#data_item').val(text);
+    //     })
+    // });
     $(document).ready(function() {
-        $('#dataTable').DataTable({
-            columnDefs: [{
-                    targets: [0],
-                    orderData: [0, 1],
-                },
-                {
-                    targets: [1],
-                    orderData: [1, 0],
-                },
-                {
-                    targets: [4],
-                    orderData: [4, 0],
-                },
-            ],
-        });
-    });
+        console.log('Test');
+    })
 </script>

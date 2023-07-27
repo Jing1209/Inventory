@@ -68,7 +68,7 @@ Employee
         <div class="d-flex flex-column me-5">
             <div style="margin-top: 100px;" class="border text-center">
                 @foreach ($image as $image1)
-                     <img id="output" width="400" height="300" src="{{ url('public/Image/'.$image1->url) }}" alt="">
+                <img id="output" width="400" height="300" src="{{ url('public/Image/'.$image1->url) }}" alt="">
                 @endforeach
             </div>
             <div class="d-flex my-3">

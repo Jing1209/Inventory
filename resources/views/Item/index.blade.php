@@ -115,9 +115,9 @@ Item
                 </tr>
             </thead>
             <tbody>
-                @foreach ($items as $item)
+                @foreach ($items as $keys => $item)
                 <tr>
-                    <td style="padding-left: 20px;">{{ $item->id }}</td>
+                    <td style="padding-left: 20px;">{{ $keys+1 }}</td>
                     <td>{{$item->item_id}}</td>
                     <td>{{ $item->title }}</td>
                     <td>{{ $item->category }}</td>

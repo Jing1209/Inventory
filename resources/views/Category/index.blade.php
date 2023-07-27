@@ -53,9 +53,9 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($categories as $category)
+                @foreach ($categories as $keys => $category)
                 <tr>
-                    <td style="padding-left: 20px;">{{ $category->id }}</td>
+                    <td style="padding-left: 20px;">{{ $keys+1 }}</td>
                     <td>{{ $category->category }}</td>
                     <td>{{ $category->quantity }}</td>
                     <td style="text-align: center;">

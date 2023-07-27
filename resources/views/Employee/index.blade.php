@@ -64,7 +64,7 @@
                     <th scope="col" style="width: 200px; text-align: center;">Action</th>  
                 </tr>
             </thead>
-            <tbody>
+            <tbody> 
                 @foreach ($employees_display as $keys => $employee)
                     <tr>
                         <td scope="row" style="padding-left: 20px;">{{ $keys+1 }}</td>

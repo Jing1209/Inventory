@@ -6,6 +6,7 @@ use App\Models\Employee;
 use Illuminate\Http\Request;
 use App\Models\EmployeeImage;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Fie;
 
 class EmployeeController extends Controller
 {
@@ -33,18 +34,18 @@ class EmployeeController extends Controller
         //     }]
         // ])
         $employees = DB::table('employees')
-        ->join('employeeimages', 'employees.id', '=', 'employeeimages.employee_id')
-        ->select('employees.id','employees.firstname','employees.lastname','employees.email','employees.phone_number','employees.gender','employees.created_at','employeeimages.url')
-        ->orderBy('employees.id', 'desc')->paginate(10);
+            ->join('employeeimages', 'employees.id', '=', 'employeeimages.employee_id')
+            ->select('employees.id', 'employees.firstname', 'employees.lastname', 'employees.email', 'employees.phone_number', 'employees.gender', 'employees.created_at', 'employeeimages.url')
+            ->orderBy('employees.id', 'desc')->paginate(10);
 
         $employees_display = DB::table('employees')
-        ->select('employees.*','employeeimages.url')
-        ->leftJoin('employeeimages', 'employeeimages.employee_id', 'employees.id', '=')
-        ->orderBy('employees.id', 'desc')->paginate(10);
-        
+            ->select('employees.*', 'employeeimages.url')
+            ->leftJoin('employeeimages', 'employeeimages.employee_id', 'employees.id', '=')
+            ->orderBy('employees.id', 'desc')->paginate(10);
+
         $count = DB::table('employees')->count();
         // dd($employees_display);
-        return view('Employee.index')->with(compact('employees_display','count'));
+        return view('Employee.index')->with(compact('employees_display', 'count'));
     }
 
     /**
@@ -68,8 +69,10 @@ class EmployeeController extends Controller
     {
         //
         // Employee::create($request->post()); 
-        $request->validate(['email'=>'unique:employees',
-    'phone_number'=>'unique:employees']);
+        $request->validate([
+            'email' => 'unique:employees',
+            'phone_number' => 'unique:employees'
+        ]);
         $employee = new Employee();
         $employee['firstname'] = $request->firstname;
         $employee['lastname'] = $request->lastname;
@@ -128,13 +131,41 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Employee $employee)
-    {
-        //
-        $request->validate(['email'=>'unique',
-        'phone_number'=>'unique']);
-        $employee->fill($request->post())->save();
+    // public function update(Request $request,Employee $employee)
+    // {
+    //     //
+    //     $request->validate(['email'=>'unique:employees',
+    //     'phone_number'=>'unique:employees']);
 
+    //     $employee->fill($request->post())->save();
+
+    //     dd($employee);
+    //     return $request->all();
+    //     return redirect()->route('employees.index')->with('success', 'Employee Has Been updated successfully');
+    // }
+    public function update(Request $request, $id)
+    {
+        $em = Employee::find($id);
+        $em['firstname'] = $request->input('firstname');
+        $em['lastname'] = $request->input('lastname');
+        $em['gender'] = $request->input('gender');
+        $em['email'] = $request->input('email');
+        $em['phone_number'] = $request->input('phone_number');
+        // $em->update();
+        // return $em;
+        // $re = EmployeeImage::where('employee_id', $id);
+
+        $data = EmployeeImage::find($em->id);
+
+        if ($request->file('images')) {
+            $file = $request->file('images');
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('public/Image'), $filename);
+            $data['url'] = $filename;
+        }
+        $data['employee_id'] = $em->id;
+
+        // $data->update();
         return redirect()->route('employees.index')->with('success', 'Employee Has Been updated successfully');
     }
 

@@ -47,10 +47,10 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($rooms as $room)
+            @foreach ($rooms as $keys => $room)
                 
                 <tr>
-                    <td style="padding-left: 20px;">{{ $room->id }}</td>
+                    <td style="padding-left: 20px;">{{ $keys+1 }}</td>
                     <td>{{ $room->name }}</td>
                     <td>{{ $room->building }}</td>  
                     <td style="text-align: center;">
